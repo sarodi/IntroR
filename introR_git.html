@@ -1,0 +1,2622 @@
+<!DOCTYPE html>
+<html lang="es"><head>
+<script src="introR_git_files/libs/clipboard/clipboard.min.js"></script>
+<script src="introR_git_files/libs/quarto-html/tabby.min.js"></script>
+<script src="introR_git_files/libs/quarto-html/popper.min.js"></script>
+<script src="introR_git_files/libs/quarto-html/tippy.umd.min.js"></script>
+<link href="introR_git_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="introR_git_files/libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="introR_git_files/libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="introR_git_files/libs/quarto-contrib/videojs/video.min.js"></script>
+<link href="introR_git_files/libs/quarto-contrib/videojs/video-js.css" rel="stylesheet"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.8.25">
+
+  <meta name="author" content="Mtra. Diana Sánchez Romero">
+  <meta name="dcterms.date" content="2026-05-25">
+  <title>Análisis de datos con perspectiva de género</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="introR_git_files/libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="introR_git_files/libs/revealjs/dist/reveal.css">
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+      vertical-align: middle;
+    }
+    /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      { color: #003b4f; background-color: #f1f3f5; }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #003b4f; } /* Normal */
+    code span.al { color: #ad0000; } /* Alert */
+    code span.an { color: #5e5e5e; } /* Annotation */
+    code span.at { color: #657422; } /* Attribute */
+    code span.bn { color: #ad0000; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #003b4f; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #20794d; } /* Char */
+    code span.cn { color: #8f5902; } /* Constant */
+    code span.co { color: #5e5e5e; } /* Comment */
+    code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+    code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+    code span.dt { color: #ad0000; } /* DataType */
+    code span.dv { color: #ad0000; } /* DecVal */
+    code span.er { color: #ad0000; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #ad0000; } /* Float */
+    code span.fu { color: #4758ab; } /* Function */
+    code span.im { color: #00769e; } /* Import */
+    code span.in { color: #5e5e5e; } /* Information */
+    code span.kw { color: #003b4f; font-weight: bold; } /* Keyword */
+    code span.op { color: #5e5e5e; } /* Operator */
+    code span.ot { color: #003b4f; } /* Other */
+    code span.pp { color: #ad0000; } /* Preprocessor */
+    code span.sc { color: #5e5e5e; } /* SpecialChar */
+    code span.ss { color: #20794d; } /* SpecialString */
+    code span.st { color: #20794d; } /* String */
+    code span.va { color: #111111; } /* Variable */
+    code span.vs { color: #20794d; } /* VerbatimString */
+    code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
+    /* CSS for citations */
+    div.csl-bib-body { }
+    div.csl-entry {
+      clear: both;
+      margin-bottom: 0em;
+    }
+    .hanging-indent div.csl-entry {
+      margin-left:2em;
+      text-indent:-2em;
+    }
+    div.csl-left-margin {
+      min-width:2em;
+      float:left;
+    }
+    div.csl-right-inline {
+      margin-left:2em;
+      padding-left:1em;
+    }
+    div.csl-indent {
+      margin-left: 2em;
+    }  </style>
+  <link rel="stylesheet" href="introR_git_files/libs/revealjs/dist/theme/quarto-534cd8e3a96973385dffff3f4709048d.css">
+  <link rel="stylesheet" href="wesanderson.css">
+  <link href="introR_git_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="introR_git_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="introR_git_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="introR_git_files/libs/revealjs/plugin/reveal-chalkboard/font-awesome/css/all.css" rel="stylesheet">
+  <link href="introR_git_files/libs/revealjs/plugin/reveal-chalkboard/style.css" rel="stylesheet">
+  <link href="introR_git_files/libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <style type="text/css">
+    .reveal div.sourceCode {
+      margin: 0;
+      overflow: auto;
+    }
+    .reveal div.hanging-indent {
+      margin-left: 1em;
+      text-indent: -1em;
+    }
+    .reveal .slide:not(.center) {
+      height: 100%;
+    }
+    .reveal .slide.scrollable {
+      overflow-y: auto;
+    }
+    .reveal .footnotes {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide .absolute {
+      position: absolute;
+      display: block;
+    }
+    .reveal .footnotes ol {
+      counter-reset: ol;
+      list-style-type: none; 
+      margin-left: 0;
+    }
+    .reveal .footnotes ol li:before {
+      counter-increment: ol;
+      content: counter(ol) ". "; 
+    }
+    .reveal .footnotes ol li > p:first-child {
+      display: inline-block;
+    }
+    .reveal .slide ul,
+    .reveal .slide ol {
+      margin-bottom: 0.5em;
+    }
+    .reveal .slide ul li,
+    .reveal .slide ol li {
+      margin-top: 0.4em;
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide ul[role="tablist"] li {
+      margin-bottom: 0;
+    }
+    .reveal .slide ul li > *:first-child,
+    .reveal .slide ol li > *:first-child {
+      margin-block-start: 0;
+    }
+    .reveal .slide ul li > *:last-child,
+    .reveal .slide ol li > *:last-child {
+      margin-block-end: 0;
+    }
+    .reveal .slide .columns:nth-child(3) {
+      margin-block-start: 0.8em;
+    }
+    .reveal blockquote {
+      box-shadow: none;
+    }
+    .reveal .tippy-content>* {
+      margin-top: 0.2em;
+      margin-bottom: 0.7em;
+    }
+    .reveal .tippy-content>*:last-child {
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide > img.stretch.quarto-figure-center,
+    .reveal .slide > img.r-stretch.quarto-figure-center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-left,
+    .reveal .slide > img.r-stretch.quarto-figure-left  {
+      display: block;
+      margin-left: 0;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-right,
+    .reveal .slide > img.r-stretch.quarto-figure-right  {
+      display: block;
+      margin-left: auto;
+      margin-right: 0; 
+    }
+  </style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="quarto-light">
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide" class="quarto-title-block center">
+  <h1 class="title">Análisis de datos con perspectiva de género</h1>
+
+<div class="quarto-title-authors">
+<div class="quarto-title-author">
+<div class="quarto-title-author-name">
+Mtra. Diana Sánchez Romero 
+</div>
+        <p class="quarto-title-affiliation">
+            Universidad Autónoma Metropolitana
+          </p>
+    </div>
+</div>
+
+  <p class="date">2026-05-25</p>
+</section>
+<section>
+<section id="bienvenida" class="title-slide slide level1 nostretch center">
+<h1>Bienvenida</h1>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="20260525_taller_flacso.png" class="margin-caption quarto-figure quarto-figure-center" width="200"></p>
+</figure>
+</div>
+<aside class="notes">
+<p>Hola, te doy la bienvenida al curso <em>Introducción a R y Python para el análisis de datos con perspectiva de género</em>, mi nombre es Diana Sánchez Romero y seré tu profesora en este taller que forma parte del ciclo <em>Metodólogas en Ciencias Sociales</em>.</p>
+<p>Agradezco a la Facultad Latinoamericana de Ciencias Sociales y al <em>Laboratorio de Métodos</em> por la invitación.</p>
+<p>Te cuento un poco sobre mi, soy mexicana y actualmente profesora e investigadora en la Universidad Autónoma Metropolitana, Unidad Iztapalapa. Soy politóloga de formación y me interesó la visualización y el análisis de datos políticos por la potencia que tienen para mostrar evidencia e incidir en la vida pública.</p>
+<p>He tenido oportunidad de certificarme en Ciencia de Datos gracias a la Asociación Mexicana de Estadística y a la alianza de Flacso con la Asociación internacional de Ciencia Política, IPSA.</p>
+<p>En varios proyectos a lo largo de mi trayectoria profesional de más de diez años he aplicado diversas metodologías para recopilar, procesar, analizar y presentar datos para la investigación y también para la toma de decisiones, en el sector público y como consultora.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="bienvenida-1" class="slide level2">
+<h2>Bienvenida</h2>
+<div class="columns" style="display: flex; gap: 30px; margin-top: 10px;">
+<div class="column" style="background-color: #FAF9F6; border: 1px solid #D9B48F; padding: 45px 30px; text-align: center; display: flex; flex-direction: column;">
+<h3 id="análisis-político"><span style="font-size: 28px; margin-bottom: 0;">Análisis Político</span></h3>
+<div style="font-size: 80%; line-height: 1.4; margin-top: 40px;">
+<p>Información abierta y estudio riguroso de datos políticos.</p>
+</div>
+</div><div class="column" style="background-color: #FAF9F6; border: 1px solid #D9B48F; padding: 45px 30px; text-align: center; display: flex; flex-direction: column;">
+<h3 id="visualización"><span style="font-size: 28px; margin-bottom: 0;">Visualización</span></h3>
+<div style="font-size: 80%; line-height: 1.4; margin-top: 40px;">
+<p>Traducción de registros complejos a narrativas visuales.</p>
+</div>
+</div><div class="column" style="background-color: #FAF9F6; border: 1px solid #D9B48F; padding: 45px 30px; text-align: center; display: flex; flex-direction: column;">
+<h3 id="incidencia"><span style="font-size: 28px; margin-bottom: 0;">Incidencia</span></h3>
+<div style="font-size: 80%; line-height: 1.4; margin-top: 40px;">
+<p>Evidencia para la toma de decisiones.</p>
+</div>
+</div></div>
+<aside class="notes">
+<p>Desde 2021 formo parte de RLadies México, que es parte de una iniciativa global para la inclusión de mujeres y otros grupos subrepresentados en la comunidad del lenguaje de programación R.</p>
+<p>Estoy convencida de que la representación de las mujeres y de grupos minoritarios es fundamental en todos los ámbitos. En la programación resulta imprescindible para generar análisis y para proponer soluciones que beneficien a toda la sociedad.</p>
+<p>En este taller nos centraremos en tres ejes fundamentales: primero, el dominio técnico de R y Python para salir de las hojas de cálculo tradicionales; segundo, la aplicación de una perspectiva de género para cuestionar cómo se construyen y leen los datos; y tercero, el objetivo final de nuestro trabajo: traducir esa información estructurada en evidencia que permita incidir en el espacio público.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="perspectiva-de-género-para-qué" class="slide level2">
+<h2>¿Perspectiva de género para qué?</h2>
+<ul>
+<li class="fragment"><p>Perspectiva crítica ante la supuesta neutralidad de los datos.</p></li>
+<li class="fragment"><p>Mejores preguntas empíricas.</p></li>
+<li class="fragment"><p>Código abierto.</p></li>
+<li class="fragment"><p>Proyección profesional.</p></li>
+</ul>
+<aside class="notes">
+<p>Antes de comenzar me gustaría que hablemos del <strong>por qué aprender a analizar datos con perspectiva de género</strong> y <strong>cuáles son los beneficios de utilizar R y Python</strong>. Existen varias razones y aquí te menciono algunas: - La primera tiene que ver con reconocer que <strong>los datos no son neutrales</strong>. Detras de cada registro existen decisiones humanas que pueden invisibilizar las experiencias de grupos completos o reproducir desigualdades históricas. Analizar con perspectiva de género nos otorga una herramienta poderosa para identificar y corregir esos sesgos. - La segunda es que incorporar esta perspectiva nos permite hacer mejores preguntas y reflejar las realidades diferenciadas que experimentan las personas, lo cual es fundamental para formular rutas de incidencia. Nos permite examinar los datos desde una postura crítica donde ya no solo consumimos de forma pasiva los registros públicos sino que comenzamos a cuestionar su estructura y a quién representan realmente. - Otra razón, es que los lenguajes de programación R y Python son abiertos, es decir, <strong>no requieren el pago de licencias comerciales</strong>. Esto elimina las barreras económicas de entrada y garantiza que cualquier persona o institución pueda utilizarlos. - En ambos lenguajes existen distintos paquetes y librerías que nos permiten realizar una infinidad de tareas: análisis estadístico de datos, podemos estimar distintos modelos, hacer análisis descriptivo o inferencial, e incluso automatizar tableros y reportes. Aprender a utilizar estas herramientas te permitirán analizar datos de manera confiable y obtendrás resultados de forma rápida y lo mejor de todo, será reproducible. - Estamos ante un mercado laboral donde se requiere analizar grandes cantidades de datos por medio de R o Python. Aprender a usar estas herramientas puede ser un activo importante en tu carrera profesional.</p>
+<p>En resumen aprender a <em>analizar datos con perspectiva de género por medio de los lenguajes de programación R y Python</em> puede beneficiarte si tienes interés en el análisis y visualización de datos para la toma de decisiones y en mejorar tus habilidades profesionales.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="metodología-del-curso" class="slide level2">
+<h2>Metodología del curso</h2>
+<ul>
+<li class="fragment"><strong>Modalidad:</strong> Síncrona online</li>
+</ul>
+<div class="line-block"></div>
+<ul>
+<li class="fragment"><strong>Duración:</strong> 4 horas, divididas en dos sesiones de 2 hrs. cada una.</li>
+</ul>
+<div class="line-block"></div>
+<ul>
+<li class="fragment"><strong>Dirigido a:</strong> Estudiantes y profesionales del área de ciencias sociales, no se requiere experiencia previa en programación.</li>
+</ul>
+</section>
+<section id="metodología-del-curso-1" class="slide level2">
+<h2>Metodología del curso</h2>
+<ul>
+<li class="fragment"><strong>Requisitos técnicos:</strong> Es necesario tener instalados R (idealmente versión 4.2 o superior) y la versión más reciente de <em>RStudio</em> antes de comenzar. No se requieren conocimientos previos de programación.</li>
+</ul>
+<div class="line-block"></div>
+<ul>
+<li class="fragment"><strong>Metodología:</strong> Aprendizaje activo enfocado en la resolución de problemas.</li>
+</ul>
+<div class="line-block"></div>
+<ul>
+<li class="fragment"><strong>Objetivo:</strong> Que las y los participantes adquieran herramientas metodológicas para <em>analizar datos con perspectiva de género</em> haciendo uso de herramientas de programación.</li>
+</ul>
+<aside class="notes">
+<p>Ahora veamos la metodología de este curso.</p>
+<p>Este es un taller síncrono de 4 horas de duración dividido en dos sesiones. Quedará grabado para que puedas regresar al video en cualquier otro momento. Durante el taller trabajaremos bajo la metodología de aprendizaje activo lo cual significa que participarás en el proceso en lugar de solamente escuchar o memorizar contenido y comandos.</p>
+<p>Contamos con un repositorio para que reflexiones sobre los materiales, realices las actividades y resuelvas problemas sobre el análisis de datos con perspectiva de género. En el repositorio encontrarás también lecturas sugeridas para profundizar en estos temas. (Preguntas de opción multiple por modulo, taller práctico por módulo y reto final + foros, lecturas y video teorico-practico).</p>
+<p>El curso se desarrollará mediante ejercicios prácticos basados en datos reales, permitiendo aplicar la perspectiva de género desde la primera sesión.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="temario" class="slide level2">
+<h2>Temario</h2>
+<aside class="notes">
+<p>Este es un taller inicial, nivel básico, con una duración de 4 horas. El único requisito es haber realizado previamente la instalación de R y RStudio. Para que puedas seguir las actividades puedes descargar los materiales del repositorio en Github [https://github.com/sarodi].</p>
+<p>Tanto R (con su fuerte enfoque en estadística y visualización) como Python son lenguajes de programación de código abierto fundamentales para el análisis de datos. La principal ventaja de incorporar estas herramientas en la investigación es que garantizan la reproducibilidad y la transparencia metodológica, respaldadas por una sólida comunidad global que desarrolla y actualiza paquetes y funcionesconstantemente.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+<ol type="1">
+<li class="fragment"><p>Análisis de datos con perspectiva de género.</p></li>
+<li class="fragment"><p>Herramientas para analizar datos (R y Python).</p></li>
+<li class="fragment"><p>Introducción a RStudio.</p></li>
+<li class="fragment"><p>Quarto: un sistema multilenguaje.</p></li>
+<li class="fragment"><p>Manipulación y limpieza de datos.</p></li>
+</ol>
+</section>
+<section id="temario-1" class="slide level2">
+<h2>Temario</h2>
+<ol start="6" type="1">
+<li class="fragment"><p>Visualización de datos con <em>ggplot</em> y <em>seaborn</em>.</p></li>
+<li class="fragment"><p>Asistencia basada en IA.</p></li>
+<li class="fragment"><p>Comunicación de resultados e incidencia.</p></li>
+<li class="fragment"><p>Algunas anotaciones finales</p></li>
+</ol>
+<aside class="notes">
+<p>1 Análisis de datos con perspectiva de género. (Marco conceptual y preguntas de investigación).</p>
+<p>2 Herramientas de código abierto para analizar datos (R y Python). (Introducción a los lenguajes, sus ecosistemas y funcionalidades).</p>
+<p>3 Introducción a RStudio. (Configurar el directorio de trabajo, rutas y organización de archivos antes de empezar).</p>
+<p>4 Quarto: un sistema multilenguaje. (Creación de su primer documento. A partir de este punto, todo el código del taller se escribe y ejecuta aquí).</p>
+<p>5 Manipulación y limpieza de datos. (Primeros bloques de código en Quarto para preparar los datos).</p>
+<p>6 Visualización de datos con ggplot y seaborn. (Generación de gráficos directamente en su documento de Quarto).</p>
+<p>7 Asistencia basada en IA. (Integración de herramientas para ayudarles a escribir código).</p>
+<p>8 Comunicación de resultados e incidencia. (Generar un eporte final o presentación).</p>
+<p>9 Algunas anotaciones finales.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="repositorio" class="slide level2">
+<h2>Repositorio</h2>
+<div class="fragment">
+<p>El código, los archivos y las bases de datos están disponibles para su consulta y descarga en:</p>
+</div>
+<div class="fragment" style="text-align: center; margin-top: 50px;">
+<a href="(https://github.com/sarodi/IntroR)" target="_blank">
+    <div class="github-box">
+        <i class="fa-brands fa-github"></i>github.com/sarodi/IntroR
+    </div>
+</a>
+</div>
+</section>
+<section id="compromiso-de-colaboración-y-corresponsabilidad" class="slide level2">
+<h2>Compromiso de colaboración y corresponsabilidad</h2>
+<div class="fragment">
+<p>Por parte de la facilitación, me comprometo a:</p>
+<ul>
+<li class="fragment"><p>Propiciar un <strong>espacio seguro</strong>.</p></li>
+<li class="fragment"><p><strong>Monitorear el ritmo del grupo</strong>.</p></li>
+<li class="fragment"><p>Proveer <strong>materiales y bases de datos limpios y documentados</strong>.</p></li>
+</ul>
+</div>
+<aside class="notes">
+<p>Para garantizar que estas 4 horas se traduzcan en un aprendizaje significativo, asumiremos un pacto de corresponsabilidad:</p>
+<ul>
+<li><p>Propiciar un <strong>espacio seguro</strong> donde el error en el código sea bienvenido como parte natural del proceso de aprendizaje.</p></li>
+<li><p><strong>Monitorear el ritmo del grupo</strong> para que nadie se quede atrás durante la escritura de código en vivo.</p></li>
+<li><p>Proveer <strong>materiales y bases de datos limpios y documentados</strong> para su posterior réplica.</p></li>
+</ul>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="compromiso-de-colaboración-y-corresponsabilidad-1" class="slide level2">
+<h2>Compromiso de colaboración y corresponsabilidad</h2>
+<div class="fragment">
+<p>Por tu parte, al integrarte a este taller te comprometes a:</p>
+<ul>
+<li class="fragment"><p><strong>Replicar el código en tu propio entorno</strong>.</p></li>
+<li class="fragment"><p><strong>Compartir tus dudas y las alertas de error</strong>.</p></li>
+<li class="fragment"><p><strong>Escuchar de manera empática y comentar constructivamente</strong>.</p></li>
+</ul>
+</div>
+<div class="fragment">
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="thumbs.gif" class="margin-caption quarto-figure quarto-figure-center" width="95" height="95"></p>
+</figure>
+</div>
+</div>
+<aside class="notes">
+<ul>
+<li><p><strong>Replicar el código en tu propio entorno</strong> en tiempo real y experimentar con los datos de forma simultánea.</p></li>
+<li><p><strong>Compartir tus dudas y las alertas de error</strong> que arroje tu consola para enriquecer el aprendizaje de todo el grupo.</p></li>
+<li><p><strong>Escuchar de manera empática y comentar constructivamente</strong> las distintas aproximaciones metodológicas y niveles técnicos de tus colegas.</p></li>
+</ul>
+<p>Si están de acuerdo, por favor escriban ‘Listo’ o reaccionen con un pulgar arriba en el chat.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section></section>
+<section>
+<section id="comenzemos" class="title-slide slide level1 center">
+<h1>¡Comenzemos!</h1>
+
+</section>
+<section id="análisis-de-datos-con-perspectiva-de-género" class="slide level2">
+<h2>1. Análisis de datos con perspectiva de género</h2>
+<h3 id="reconocer-el-contexto">Reconocer el contexto</h3>
+<div class="fragment">
+<ul>
+<li class="fragment"><p>Implica entender que los factores <strong>sociales</strong>, <strong>económicos</strong> y <strong>sistémicos</strong> impactan de forma diferenciada a las personas.</p></li>
+<li class="fragment"><p>Comprender que la supuesta neutralidad de los datos a menudo invisibiliza estas realidades.</p></li>
+<li class="fragment"><p>Dejar de asumir a la población como un bloque homogéneo.</p></li>
+</ul>
+</div>
+<div class="fragment">
+<p>Al desagregar y cuestionar la información, formulamos <strong>mejores preguntas empíricas</strong> para la toma de decisiones.</p>
+</div>
+<aside class="notes">
+<p><strong>¿Qué significa analizar datos con perspectiva de género?</strong></p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="análisis-de-datos-con-perspectiva-de-género-1" class="slide level2">
+<h2>1. Análisis de datos con perspectiva de género</h2>
+<h3 id="ejemplo-1">Ejemplo 1</h3>
+<div class="columns" style="display: flex; gap: 30px; margin-top: 30px;">
+<div class="column" height="60%" style="background-color: #FAF9F6; border: 1px solid #D9B48F; padding: 40px; display: flex; flex-direction: column;">
+<p><span style="font-size: 0.5em; font-weight: bold; color: #D9B48F; letter-spacing: 2px;">NIVEL DESCRIPTIVO</span></p>
+<h3 id="cuál-fue-el-nivel-de-participación-en-la-última-elección-municipal">¿Cuál fue el nivel de participación en la última elección municipal?</h3>
+<div style="margin-top: auto; border-top: 1px solid #eee; padding-top: 13px; font-style: italic; color: #C84B31; font-size: 0.6em;">
+<p>Produce un <strong>dato agregado</strong>.</p>
+</div>
+</div><div class="column" style="background-color: #FAF9F6; border: 2px solid #C84B31; padding: 40px; display: flex; flex-direction: column; box-shadow: 6px 6px 0px rgba(200, 75, 49, 0.1);">
+<p><span style="font-size: 0.5em; font-weight: bold; color: #C84B31; letter-spacing: 2px;">NIVEL ANALÍTICO</span></p>
+<h3 id="cómo-impactan-las-labores-de-cuidado-en-la-diferencia-de-participación-entre-hombres-y-mujeres-en-elecciones-municipales">¿Cómo impactan las labores de cuidado en la diferencia de participación entre hombres y mujeres en elecciones municipales?</h3>
+<div style="margin-top: auto; border-top: 1px solid #eee; padding-top: 13px; font-weight: bold; color: #2B4C59; font-size: 0.6em;">
+<p>Visibiliza brechas en la participación y genera <strong>evidencia</strong> para el diseño de proyectos de incidencia.</p>
+</div>
+</div><aside class="notes">
+<p>Imaginemos que vamos a analizar la participación electoral a partir de bases de datos públicas.</p>
+<p>Tener acceso a la información es solo el primer paso; el siguiente implica decidir lo que le vamos a preguntar a esos datos.</p>
+<p>R y Python van a procesar exactamente lo que les indiquemos. Si hacemos una pregunta descriptiva básica, como obtener un promedio, el programa nos devolverá un número correcto matemáticamente que resume la información, pero que resulta inútil para la incidencia.</p>
+<p>Aprender a formular mejores preguntas empíricas consiste en estructurar el análisis para visibilizar las variables y desigualdades que el dato agregado simplemente no muestra.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</div>
+</section>
+<section id="análisis-de-datos-con-perspectiva-de-género-2" class="slide level2">
+<h2>1. Análisis de datos con perspectiva de género</h2>
+<p>De acuerdo con <span class="citation" data-cites="undesa2016integrating">United Nations Department of Economic and Social Affairs, Statistics Division (<a href="#/references" role="doc-biblioref" onclick="">2016</a>)</span>, un primer paso para integrar la <em>perspectiva de género</em> al análisis es asegurarse de que <strong>los datos reflejan problemas, necesidades, y oportunidades de hombres y mujeres</strong>. <span class="citation" data-cites="undesa2016integrating">(<a href="#/references" role="doc-biblioref" onclick="">United Nations Department of Economic and Social Affairs, Statistics Division 2016</a>)</span></p>
+<aside class="notes">
+<p>La palabra «sexo» se refiere a las diferencias biológicas entre mujeres y hombres.</p>
+<p>Las diferencias biológicas son fijas e inmutables, y no varían entre culturas ni a lo largo del tiempo.</p>
+<p>Por su parte, el «género» se refiere a las diferencias construidas socialmente en los atributos y oportunidades asociados con el hecho de ser mujer u hombre, así como a las interacciones sociales y las relaciones entre mujeres y hombres.</p>
+<p>El género determina lo que se espera, se permite y se valora en una mujer o en un hombre dentro de un contexto dado.</p>
+<p>En la mayoría de las sociedades, existen diferencias y desigualdades entre mujeres y hombres en términos de los roles y responsabilidades asignados, las actividades realizadas, el acceso y control sobre los recursos, y las oportunidades en la toma de decisiones.</p>
+<p>Estas diferencias y desigualdades entre los sexos están configuradas por la historia de las relaciones sociales y cambian con el tiempo y entre las distintas culturas.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="análisis-de-datos-con-perspectiva-de-género-3" class="slide level2">
+<h2>1. Análisis de datos con perspectiva de género</h2>
+<p>Esto implica que los datos:</p>
+<ol type="1">
+<li class="fragment">Están <strong>desagregados por sexo</strong>.</li>
+<li class="fragment">Reflejan <strong>temas de género</strong>.</li>
+<li class="fragment">Se basan en conceptos y definiciones que muestran la <strong>diversidad de experiencias de mujeres y hombres, relaciones y desigualdades</strong>.</li>
+<li class="fragment">Se recolectan <strong>tomando en cuenta factores culturales que podrían sesgar la información</strong>.</li>
+</ol>
+</section>
+<section id="análisis-de-datos-con-perspectiva-de-género-4" class="slide level2">
+<h2>1. Análisis de datos con perspectiva de género</h2>
+<div class="fragment">
+<div title="Advertencia">
+<div class="callout callout-warning callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Advertencia</strong></p>
+</div>
+<div class="callout-content">
+<p>Los datos desagregados por sexo pueden revelar <strong>diferencias</strong> en las vidas de mujeres y hombres que son el <strong>resultado de los roles y las expectativas de género</strong>.</p>
+<p>Sin embargo, para realizar un análisis <em>con perspectiva de género</em> se requiere más que datos desagregados por sexo.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+<h3 id="ejemplo-2">Ejemplo 2</h3>
+<p><strong>¿Con cuál de estos dos indicadores podemos realizar un análisis con perspectiva de género?</strong></p>
+<div class="columns" style="display: flex; gap: 30px; margin-top: 30px;">
+<div class="column" style="background-color: #FAF9F6; border: 1px solid #C84B31; padding: 40px; display: flex; flex-direction: column;">
+<p><span style="font-size: 0.9em; font-weight: bold; color: #C84B31; letter-spacing: 2px;">INDICADOR A</span></p>
+<div style="margin-top: 2px; border-top: 1px solid #eee; padding-top: 13px; color: #444; font-size: 0.8em;">
+<p>Proporción total de curules en el Congreso ocupados por mujeres frente a hombres.</p>
+</div>
+</div><div class="column" style="background-color: #FAF9F6; border: 1px solid #C84B31; padding: 40px; display: flex; flex-direction: column;">
+<p><span style="font-size: 0.9em; font-weight: bold; color: #C84B31; letter-spacing: 2px;">INDICADOR B</span></p>
+<div style="margin-top: auto; border-top: 1px solid #eee; padding-top: 13px; color: #444; font-size: 0.8em;">
+<p>Mujeres en las presidencias de las comisiones legislativas que tratan temas de <em>justicia, economía, política o seguridad (JEPS)</em>.</p>
+</div>
+</div></div>
+<div class="fragment">
+<p>Escribe ‘A’ o ‘B’ en el chat.</p>
+</div>
+<aside class="notes">
+<p>Escriban ‘A’ o ‘B’ en el chat.</p>
+<p>La paridad logra que las mujeres lleguen al Congreso (Indicador A), pero las reglas informales las confinan a comisiones que son una extensión del rol de cuidados, alejándolas del control presupuestal y político (Indicador B).</p>
+<p>Las comisiones JEPS son “notables por su alto volumen de iniciativas y su impacto significativo en los sistemas políticos, sociales y económicos. Esta diferenciación reconoce que las comisiones JEPS a menudo abordan asuntos históricamente dominados por los hombres, a diferencia de las comisiones enfocadas en temas de «cuidados», tradicionalmente asociadas a las mujeres.” Báez &amp; Bárcena (2025:122)</p>
+<p>Para analizar el segundo conjunto de datos debemos crear una nueva variable categórica para clasificar las comisiones legislativas. Para ello utilizaremos mutate() y case_when().</p>
+<p>Posteriormente, agruparemos (group_by) por tipo de comisión y sexo para cuantificar la brecha.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section class="slide level2">
+
+<blockquote>
+<p>“Las comisiones <em>JEPS</em> a menudo abordan asuntos históricamente dominados por los hombres, a diferencia de las comisiones enfocadas en temas de <em>cuidados</em>, tradicionalmente asociadas a las mujeres.”</p>
+<p><span class="citation" data-cites="baez2025beyond">(<a href="#/references" role="doc-biblioref" onclick="">Báez Carlos y Bárcena Juárez 2025, 122</a>)</span></p>
+</blockquote>
+</section>
+<section id="análisis-de-datos-con-perspectiva-de-género-5" class="slide level2">
+<h2>1. Análisis de datos con perspectiva de género</h2>
+<p>El sistema estadístico mexicano ha integrado la perspectiva de género para visibilizar desigualdades estructurales.</p>
+<div class="fragment">
+<h3 id="censos">1. Censos</h3>
+<p><a href="https://www.inegi.org.mx/programas/ccpv/2020/"><strong>Censo de Población y Vivienda (INEGI,2020)</strong></a></p>
+<p><a href="https://www.inegi.org.mx/programas/ca/2022/"><strong>Censo Agropecuario (INEGI, 2022)</strong></a></p>
+<h3 id="trabajo">2. Trabajo</h3>
+<p><a href="https://www.inegi.org.mx/programas/enoe/15ymas/"><strong>Encuesta Nacional de Ocupación y Empleo (ENOE,2025)</strong></a></p>
+</div>
+</section>
+<section id="análisis-de-datos-con-perspectiva-de-género-6" class="slide level2">
+<h2>1. Análisis de datos con perspectiva de género</h2>
+<p>El sistema estadístico mexicano ha integrado la perspectiva de género para visibilizar desigualdades estructurales.</p>
+<div class="fragment">
+<h3 id="uso-del-tiempo">3. Uso del Tiempo</h3>
+<p><a href="https://www.inegi.org.mx/programas/enut/2024/"><strong>Encuesta Nacional sobre Uso del Tiempo (ENUT,2024)</strong></a></p>
+<h3 id="violencia">4. Violencia</h3>
+<p><a href="https://www.inegi.org.mx/programas/endireh/2021/"><strong>Dinámica de las Relaciones en los Hogares (ENDIREH,2021)</strong></a></p>
+<p><a href="https://www.inegi.org.mx/programas/envipe/2025/"><strong>Victimización y Percepción sobre Seguridad (ENVIPE,2025)</strong></a></p>
+</div>
+</section>
+<section id="análisis-de-datos-con-perspectiva-de-género-7" class="slide level2 nostretch">
+<h2>1. Análisis de datos con perspectiva de género</h2>
+<div class="fragment">
+<p>Conoce más en los <a href="https://www.inegi.org.mx/tablerosestadisticos/genero/">Tableros Estadísticos</a> del INEGI.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="tableros.png" class="margin-caption quarto-figure quarto-figure-center" width="600" height="600"></p>
+</figure>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+</section></section>
+<section>
+<section id="cuestionario" class="title-slide slide level1 center">
+<h1>Cuestionario</h1>
+
+<img data-src="mentimeter_qr_code.png" class="margin-caption r-stretch quarto-figure-center"><p class="caption">Escanea el QR o entra a <strong>menti.com</strong> e introduce el código 35569032</p></section>
+<section class="slide level2">
+
+<iframe sandbox="allow-popups allow-scripts allow-same-origin allow-presentation" allowfullscreen="true" allowtransparency="true" frameborder="0" height="315" src="https://www.mentimeter.com/app/presentation/al37nqktprncadgohw2r7ruzpce5xxv1/embed" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" width="420">
+</iframe>
+<aside class="notes">
+<p>Por favor contesta la siguiente encuesta para evaluar tus conocimientos previos. No hay respuestas incorrectas y solo tomará un par de minutos.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="herramientas-para-analizar-datos" class="slide level2">
+<h2>2. Herramientas para analizar datos</h2>
+<p><strong>¿Por qué elegir lenguajes como R o Python?</strong></p>
+<ul>
+<li class="fragment"><p>Software <strong>libre y gratuito</strong></p></li>
+<li class="fragment"><p><strong>Ciencia abierta</strong></p></li>
+<li class="fragment"><p>Ecosistema <strong>colaborativo</strong></p></li>
+</ul>
+<aside class="notes">
+<p>R destaca por su especialización en estadística y visualizaciones, mientras que Python ofrece una gran versatilidad computacional.</p>
+<p>Al trabajar mediante instrucciones escritas que se almacenan, permite auditar el proceso paso a paso, garantizando la <strong>reproducibilidad</strong> y la <strong>transparencia</strong> de la investigación.</p>
+<p>Ambos están respaldados por una comunidad global activa que diseña, documenta y comparte nuevas herramientas continuamente.</p>
+<p>Al no depender de software comercial o “cajas negras” donde solo damos clics, R y Python nos obligan a dejar un registro exacto de todo lo que le hicimos a los datos. Cualquier persona debe poder tomar nuestro código y llegar exactamente a los mismos resultados.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="herramientas-para-analizar-datos-1" class="slide level2">
+<h2>2. Herramientas para analizar datos</h2>
+<ul>
+<li class="fragment"><p><em>R</em> y <em>Python</em> son <strong>lenguajes de programación</strong>.</p></li>
+<li class="fragment"><p>El lenguaje <em>R</em> es ampliamente utilizado para <strong>análisis estadístico</strong>.</p></li>
+<li class="fragment"><p>El lenguaje <em>Python</em> es reconocido por su versatilidad en el <strong>desarrollo de software</strong> y <strong>aprendizaje automático</strong>.</p></li>
+<li class="fragment"><p>Podemos utilizar <strong>ambos</strong> lenguajes por medio de entornos de desarrollo (IDE) que facilitan su uso (RStudio, Jupyter Notebooks, VSCode, etc.).</p></li>
+</ul>
+</section>
+<section id="herramientas-para-analizar-datos-2" class="slide level2">
+<h2>2. Herramientas para analizar datos</h2>
+<div class="columns" style="display: flex; gap: 30px; margin-top: 10px;">
+<div class="column" style="background-color: #FAF9F6; border: 1px solid #D9B48F; padding: 45px 30px; text-align: center; display: flex; flex-direction: column;">
+<p><img data-src="rs.svg" class="margin-caption" height="300"></p>
+</div><div class="column" style="background-color: #FAF9F6; border: 1px solid #D9B48F; padding: 45px 30px; text-align: center; display: flex; flex-direction: column;">
+<p><img data-src="jupyter.svg" class="margin-caption" height="200"></p>
+</div></div>
+<aside class="notes">
+<p>R es una plataforma para el análisis y graficación de datos. R utiliza como base el lenguaje S, desarrollado por John Chambers y colaboradores (Becker et al., 1988; Chambers and Hastie, 1992; Chambers et al., 1998) a inicios de los años 1960s. El lenguaje S fue diseñado y desarrollado como un lenguaje de programación para realizar funciones de análisis de datos.</p>
+<p>Python es un lenguaje de programación orientado a objetos de propósito general que enfatiza la legibilidad del código a través de su generoso uso de espacios en blanco. Lanzado en 1989, Python es fácil de aprender y uno de los favoritos de programadores y desarrolladores. De hecho, Python es uno de los lenguajes de programación más populares del mundo, justo detrás de Java y C.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="herramientas-para-analizar-datos-3" class="slide level2">
+<h2>2. Herramientas para analizar datos</h2>
+<h3 id="paquetes-de-r-y-python">Paquetes de R y Python</h3>
+<p>Los paquetes de R estan disponibles en el repositorio <a href="https://cran.r-project.org/web/packages/available_packages_by_name.html">CRAN</a></p>
+<ul>
+<li class="fragment"><p>Encontramos paquetes sobre econometría, análisis genómico, visualizaciones avanzadas, entre otros.</p></li>
+<li class="fragment"><p>Todos cumplen con estándares de reproducibilidad, verificaciones de documentación y óptimo rendimiento.</p></li>
+</ul>
+</section>
+<section id="herramientas-para-analizar-datos-4" class="slide level2">
+<h2>2. Herramientas para analizar datos</h2>
+<div title="Nota sobre paquetería">
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Nota sobre paquetería</strong></p>
+</div>
+<div class="callout-content">
+<p>R es altamente extensible gracias a sus paquetes, lo cual lo hace ideal para diversas disciplinas como economía, política, ciencia de datos y negocios.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="herramientas-para-analizar-datos-5" class="slide level2">
+<h2>2. Herramientas para analizar datos</h2>
+<ul>
+<li class="fragment"><p>Python incluye módulos escritos en C que permiten interactuar con el sistema operativo.</p></li>
+<li class="fragment"><p>También integra paquetes de terceros que expanden las funcionalidades del lenguaje a cualquier área de desarrollo.</p></li>
+</ul>
+</section>
+<section id="herramientas-para-analizar-datos-6" class="slide level2">
+<h2>2. Herramientas para analizar datos</h2>
+<div title="Nota sobre paquetería">
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Nota sobre paquetería</strong></p>
+</div>
+<div class="callout-content">
+<p>A través del <em>Python Package Index (PyPI)</em> permite a los usuarios escalar desde scripts simples hasta aplicaciones complejas de ciencia de datos, inteligencia artificial y automatización de procesos.</p>
+</div>
+</div>
+</div>
+</div>
+<aside class="notes">
+<p>PyPI permite encontrar e instalar programas desarrollados y compartidos por la comunidad de Python.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="herramientas-para-analizar-datos-7" class="slide level2">
+<h2>2. Herramientas para analizar datos</h2>
+<p>En esta sección conoceremos la interfaz de RStudio.</p>
+<div class="fragment">
+<p>Aprenderemos cómo se instalan paquetes y se cargan librerías.</p>
+</div>
+<div class="fragment">
+<p>También conoceremos cómo consultar la documentación de cada paquete.</p>
+</div>
+<div class="fragment">
+<p><em>Y escribiremos nuestras primeras líneas de código.</em></p>
+</div>
+</section>
+<section id="introducción-a-rstudio" class="slide level2">
+<h2>3. Introducción a RStudio</h2>
+<p>Exploremos la interfaz de RStudio.</p>
+
+<img data-src="ambiente.png" class="margin-caption quarto-figure quarto-figure-center r-stretch"><aside class="notes">
+<p>RStudio se divide en cuatro paneles (guión o script, objetos, consola y miscelánea -archivos, gráficos, paquetería, ayuda-), que abordaremos a continuación.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section></section>
+<section id="tu-turno" class="title-slide slide level1 center">
+<h1>Tu turno</h1>
+<p>Abre RStudio y genera un nuevo archivo en blanco con el siguiente atajo:</p>
+<p><strong>Windows/Linux:</strong> Ctrl + Shift + N</p>
+<p><strong>macOS:</strong> Cmd + Shift + N</p>
+<div class="frgment">
+<div class="quarto-figure quarto-figure-right">
+<figure>
+<p><img data-src="rscript.png" class="margin-caption quarto-figure quarto-figure-right" height="1000"></p>
+</figure>
+</div>
+</div>
+</section>
+
+<section>
+<section id="tu-turno-1" class="title-slide slide level1 center">
+<h1>Tu turno</h1>
+<div class="fragment custom blur">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1" data-code-line-numbers="1|2|3|4|5|6|7|8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href=""></a><span class="co"># instalación de paquete {datos}</span></span>
+<span id="cb1-2"><a href=""></a><span class="fu">install.packages</span>(<span class="st">"datos"</span>)</span>
+<span id="cb1-3"><a href=""></a><span class="co"># cargar librería {datos}</span></span>
+<span id="cb1-4"><a href=""></a><span class="fu">library</span>(datos)</span>
+<span id="cb1-5"><a href=""></a><span class="co"># cargar librería {datasets}</span></span>
+<span id="cb1-6"><a href=""></a><span class="fu">library</span>(datasets)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<div class="fragment">
+<p>El símbolo <strong>#</strong> sirve para hacer comentarios dentro del código de R, de esa forma, todo el texto en la línea comentada es ignorado y no se ejecuta.</p>
+</div>
+</section>
+<section class="slide level2">
+
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2" data-code-line-numbers="1|2|3|4|5|6|7|8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href=""></a><span class="co"># instalación de paquete {datos}</span></span>
+<span id="cb2-2"><a href=""></a><span class="fu">install.packages</span>(<span class="st">"datos"</span>)</span>
+<span id="cb2-3"><a href=""></a><span class="co"># cargar librería {datos}</span></span>
+<span id="cb2-4"><a href=""></a><span class="fu">library</span>(datos)</span>
+<span id="cb2-5"><a href=""></a><span class="co"># explorar {datos}</span></span>
+<span id="cb2-6"><a href=""></a><span class="fu">data</span>(<span class="at">package =</span> <span class="st">"datos"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="fragment">
+<ul>
+<li class="fragment"><p>Explora los datos precargados en R, elige algún conjunto que te llame la atención dentro del paquete <code>datasets</code>.</p></li>
+<li class="fragment"><p>También puedes utilizar el paquete <a href="https://cienciadedatos.github.io/datos/"><code>datos</code>*</a> que provee la traducción al español.</p></li>
+</ul>
+</div>
+<div class="fragment">
+<h3 id="créditos">Créditos</h3>
+<p>*La autora principal del paquete <code>datos</code> es <a href="https://twitter.com/rivaquiroga">Riva Quiroga</a>, parte del equipo de liderazgo global de <a href="https://rladies.org/">R-Ladies+</a>.</p>
+</div>
+</section>
+<section class="slide level2">
+
+<h3 id="conocer-documentación">Conocer documentación</h3>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3" data-code-line-numbers="1|2|3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href=""></a><span class="co"># conocer el contenido del paquete</span></span>
+<span id="cb3-2"><a href=""></a><span class="fu">library</span>(<span class="at">help =</span> <span class="st">"datasets"</span>)</span>
+<span id="cb3-3"><a href=""></a>??datasets</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<aside class="notes">
+<p>El documento que contiene toda la información y funcionalidades del paquete aparece en el panel inferior derecho, dentro de la pestaña ‘Help’</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section class="slide level2">
+
+<h3 id="explorar-los-datos">Explorar los datos</h3>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 9
+   anio estado_civil   edad raza  ingreso partido religion denominacion horas_tv
+  &lt;int&gt; &lt;fct&gt;         &lt;int&gt; &lt;fct&gt; &lt;fct&gt;   &lt;fct&gt;   &lt;fct&gt;    &lt;fct&gt;           &lt;int&gt;
+1  2000 Nunca se ha …    26 Blan… 8000 -… Ind, p… Protest… Bautistas d…       12
+2  2000 Divorciado       48 Blan… 8000 -… No fue… Protest… Bautista, n…       NA
+3  2000 Viudo            67 Blan… No apl… Indepe… Protest… No denomina…        2
+4  2000 Nunca se ha …    39 Blan… No apl… Ind, p… Cristia… No aplica           4
+5  2000 Divorciado       25 Blan… No apl… No fue… Ninguna  No aplica           1
+6  2000 Casado           25 Blan… 20000 … Fuerte… Protest… Bautistas d…       NA</code></pre>
+</div>
+</div>
+<h3 id="explorar-los-datos-1">Explorar los datos</h3>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href=""></a><span class="co"># conocer el contenido del paquete</span></span>
+<span id="cb5-2"><a href=""></a><span class="fu">library</span>(datos)</span>
+<span id="cb5-3"><a href=""></a><span class="fu">head</span>(encuesta)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 9
+   anio estado_civil   edad raza  ingreso partido religion denominacion horas_tv
+  &lt;int&gt; &lt;fct&gt;         &lt;int&gt; &lt;fct&gt; &lt;fct&gt;   &lt;fct&gt;   &lt;fct&gt;    &lt;fct&gt;           &lt;int&gt;
+1  2000 Nunca se ha …    26 Blan… 8000 -… Ind, p… Protest… Bautistas d…       12
+2  2000 Divorciado       48 Blan… 8000 -… No fue… Protest… Bautista, n…       NA
+3  2000 Viudo            67 Blan… No apl… Indepe… Protest… No denomina…        2
+4  2000 Nunca se ha …    39 Blan… No apl… Ind, p… Cristia… No aplica           4
+5  2000 Divorciado       25 Blan… No apl… No fue… Ninguna  No aplica           1
+6  2000 Casado           25 Blan… 20000 … Fuerte… Protest… Bautistas d…       NA</code></pre>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+<p>Para saber qué columnas tenemos usaremos <code>colnames</code> para saber los nombres de las columnas o variables y <code>dim</code> para conocer tanto número de columnas como número de observaciones.</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "anio"         "estado_civil" "edad"         "raza"         "ingreso"     
+[6] "partido"      "religion"     "denominacion" "horas_tv"    </code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 21483     9</code></pre>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href=""></a><span class="fu">colnames</span>(encuesta)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "anio"         "estado_civil" "edad"         "raza"         "ingreso"     
+[6] "partido"      "religion"     "denominacion" "horas_tv"    </code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href=""></a><span class="fu">dim</span>(encuesta)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 21483     9</code></pre>
+</div>
+</div>
+<p>Estos datos siguen el formato tidy, por lo cual no debemos pre-procesarlos, es decir, limpiarlos.</p>
+</section>
+<section class="slide level2">
+
+<ul>
+<li class="fragment"><p>Podemos seguir explorando para conocer el tipo de datos.</p></li>
+<li class="fragment"><p>Los tipos de datos más comunes son enteros (<em>integer</em>), numéricos (<em>numeric</em>), texto (<em>chr</em>), lógico (<em>logical</em>), factor, valor perdido (<em>NA</em>), vacío (<em>NULL</em>) y tipo fecha (<em>dates</em>).</p></li>
+</ul>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>tibble [21,483 × 9] (S3: tbl_df/tbl/data.frame)
+ $ anio        : int [1:21483] 2000 2000 2000 2000 2000 2000 2000 2000 2000 2000 ...
+ $ estado_civil: Factor w/ 6 levels "Sin respuesta",..: 2 4 5 2 4 6 2 4 6 6 ...
+ $ edad        : int [1:21483] 26 48 67 39 25 25 36 44 44 47 ...
+ $ raza        : Factor w/ 4 levels "Otra","Negra",..: 3 3 3 3 3 3 3 3 3 3 ...
+ $ ingreso     : Factor w/ 16 levels "Sin respuesta",..: 8 8 16 16 16 5 4 9 4 4 ...
+ $ partido     : Factor w/ 10 levels "Sin respuesta",..: 6 5 7 6 9 10 5 8 9 4 ...
+ $ religion    : Factor w/ 16 levels "Sin respuesta",..: 15 15 15 6 12 15 5 15 15 15 ...
+ $ denominacion: Factor w/ 30 levels "Sin respuesta",..: 25 23 3 30 30 25 30 15 4 25 ...
+ $ horas_tv    : int [1:21483] 12 NA 2 4 1 NA 3 NA 0 3 ...</code></pre>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href=""></a><span class="co"># conocer el contenido del paquete</span></span>
+<span id="cb14-2"><a href=""></a><span class="fu">library</span>(datos)</span>
+<span id="cb14-3"><a href=""></a><span class="fu">str</span>(encuesta)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>tibble [21,483 × 9] (S3: tbl_df/tbl/data.frame)
+ $ anio        : int [1:21483] 2000 2000 2000 2000 2000 2000 2000 2000 2000 2000 ...
+ $ estado_civil: Factor w/ 6 levels "Sin respuesta",..: 2 4 5 2 4 6 2 4 6 6 ...
+ $ edad        : int [1:21483] 26 48 67 39 25 25 36 44 44 47 ...
+ $ raza        : Factor w/ 4 levels "Otra","Negra",..: 3 3 3 3 3 3 3 3 3 3 ...
+ $ ingreso     : Factor w/ 16 levels "Sin respuesta",..: 8 8 16 16 16 5 4 9 4 4 ...
+ $ partido     : Factor w/ 10 levels "Sin respuesta",..: 6 5 7 6 9 10 5 8 9 4 ...
+ $ religion    : Factor w/ 16 levels "Sin respuesta",..: 15 15 15 6 12 15 5 15 15 15 ...
+ $ denominacion: Factor w/ 30 levels "Sin respuesta",..: 25 23 3 30 30 25 30 15 4 25 ...
+ $ horas_tv    : int [1:21483] 12 NA 2 4 1 NA 3 NA 0 3 ...</code></pre>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+<div class="cell">
+<div class="cell-output-display margin-caption">
+<table>
+<caption>Data summary</caption>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Name</td>
+<td style="text-align: left;">encuesta</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Number of rows</td>
+<td style="text-align: left;">21483</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Number of columns</td>
+<td style="text-align: left;">9</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">_______________________</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Column type frequency:</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">factor</td>
+<td style="text-align: left;">6</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">numeric</td>
+<td style="text-align: left;">3</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">________________________</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Group variables</td>
+<td style="text-align: left;">None</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Variable type: factor</strong></p>
+<table>
+<colgroup>
+<col style="width: 14%">
+<col style="width: 10%">
+<col style="width: 14%">
+<col style="width: 8%">
+<col style="width: 9%">
+<col style="width: 44%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">skim_variable</th>
+<th style="text-align: right;">n_missing</th>
+<th style="text-align: right;">complete_rate</th>
+<th style="text-align: left;">ordered</th>
+<th style="text-align: right;">n_unique</th>
+<th style="text-align: left;">top_counts</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">estado_civil</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">FALSE</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: left;">Cas: 10117, Nun: 5416, Div: 3383, Viu: 1807</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">raza</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">FALSE</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: left;">Bla: 16395, Neg: 3129, Otr: 1959, No : 0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ingreso</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">FALSE</td>
+<td style="text-align: right;">16</td>
+<td style="text-align: left;">250: 7363, No : 7043, 200: 1283, 100: 1168</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">partido</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">FALSE</td>
+<td style="text-align: right;">10</td>
+<td style="text-align: left;">Ind: 4119, No : 3690, Fue: 3490, No : 3032</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">religion</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">FALSE</td>
+<td style="text-align: right;">15</td>
+<td style="text-align: left;">Pro: 10846, Cat: 5124, Nin: 3523, Cri: 689</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">denominacion</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">FALSE</td>
+<td style="text-align: right;">30</td>
+<td style="text-align: left;">No : 10072, Otr: 2534, No : 1683, Bau: 1536</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Variable type: numeric</strong></p>
+<table style="width:100%;">
+<colgroup>
+<col style="width: 16%">
+<col style="width: 12%">
+<col style="width: 16%">
+<col style="width: 9%">
+<col style="width: 7%">
+<col style="width: 6%">
+<col style="width: 6%">
+<col style="width: 6%">
+<col style="width: 6%">
+<col style="width: 6%">
+<col style="width: 7%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">skim_variable</th>
+<th style="text-align: right;">n_missing</th>
+<th style="text-align: right;">complete_rate</th>
+<th style="text-align: right;">mean</th>
+<th style="text-align: right;">sd</th>
+<th style="text-align: right;">p0</th>
+<th style="text-align: right;">p25</th>
+<th style="text-align: right;">p50</th>
+<th style="text-align: right;">p75</th>
+<th style="text-align: right;">p100</th>
+<th style="text-align: left;">hist</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">anio</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">2006.50</td>
+<td style="text-align: right;">4.45</td>
+<td style="text-align: right;">2000</td>
+<td style="text-align: right;">2002</td>
+<td style="text-align: right;">2006</td>
+<td style="text-align: right;">2010</td>
+<td style="text-align: right;">2014</td>
+<td style="text-align: left;">▇▃▇▂▆</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">edad</td>
+<td style="text-align: right;">76</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">47.18</td>
+<td style="text-align: right;">17.29</td>
+<td style="text-align: right;">18</td>
+<td style="text-align: right;">33</td>
+<td style="text-align: right;">46</td>
+<td style="text-align: right;">59</td>
+<td style="text-align: right;">89</td>
+<td style="text-align: left;">▇▇▇▅▂</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">horas_tv</td>
+<td style="text-align: right;">10146</td>
+<td style="text-align: right;">0.53</td>
+<td style="text-align: right;">2.98</td>
+<td style="text-align: right;">2.59</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">24</td>
+<td style="text-align: left;">▇▂▁▁▁</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href=""></a><span class="fu">library</span>(datos)</span>
+<span id="cb16-2"><a href=""></a><span class="fu">library</span>(skimr)</span>
+<span id="cb16-3"><a href=""></a><span class="fu">skim</span>(encuesta)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display margin-caption">
+<table>
+<caption>Data summary</caption>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Name</td>
+<td style="text-align: left;">encuesta</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Number of rows</td>
+<td style="text-align: left;">21483</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Number of columns</td>
+<td style="text-align: left;">9</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">_______________________</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Column type frequency:</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">factor</td>
+<td style="text-align: left;">6</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">numeric</td>
+<td style="text-align: left;">3</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">________________________</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Group variables</td>
+<td style="text-align: left;">None</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Variable type: factor</strong></p>
+<table>
+<colgroup>
+<col style="width: 14%">
+<col style="width: 10%">
+<col style="width: 14%">
+<col style="width: 8%">
+<col style="width: 9%">
+<col style="width: 44%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">skim_variable</th>
+<th style="text-align: right;">n_missing</th>
+<th style="text-align: right;">complete_rate</th>
+<th style="text-align: left;">ordered</th>
+<th style="text-align: right;">n_unique</th>
+<th style="text-align: left;">top_counts</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">estado_civil</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">FALSE</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: left;">Cas: 10117, Nun: 5416, Div: 3383, Viu: 1807</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">raza</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">FALSE</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: left;">Bla: 16395, Neg: 3129, Otr: 1959, No : 0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">ingreso</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">FALSE</td>
+<td style="text-align: right;">16</td>
+<td style="text-align: left;">250: 7363, No : 7043, 200: 1283, 100: 1168</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">partido</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">FALSE</td>
+<td style="text-align: right;">10</td>
+<td style="text-align: left;">Ind: 4119, No : 3690, Fue: 3490, No : 3032</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">religion</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">FALSE</td>
+<td style="text-align: right;">15</td>
+<td style="text-align: left;">Pro: 10846, Cat: 5124, Nin: 3523, Cri: 689</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">denominacion</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">FALSE</td>
+<td style="text-align: right;">30</td>
+<td style="text-align: left;">No : 10072, Otr: 2534, No : 1683, Bau: 1536</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Variable type: numeric</strong></p>
+<table style="width:100%;">
+<colgroup>
+<col style="width: 16%">
+<col style="width: 12%">
+<col style="width: 16%">
+<col style="width: 9%">
+<col style="width: 7%">
+<col style="width: 6%">
+<col style="width: 6%">
+<col style="width: 6%">
+<col style="width: 6%">
+<col style="width: 6%">
+<col style="width: 7%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">skim_variable</th>
+<th style="text-align: right;">n_missing</th>
+<th style="text-align: right;">complete_rate</th>
+<th style="text-align: right;">mean</th>
+<th style="text-align: right;">sd</th>
+<th style="text-align: right;">p0</th>
+<th style="text-align: right;">p25</th>
+<th style="text-align: right;">p50</th>
+<th style="text-align: right;">p75</th>
+<th style="text-align: right;">p100</th>
+<th style="text-align: left;">hist</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">anio</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">2006.50</td>
+<td style="text-align: right;">4.45</td>
+<td style="text-align: right;">2000</td>
+<td style="text-align: right;">2002</td>
+<td style="text-align: right;">2006</td>
+<td style="text-align: right;">2010</td>
+<td style="text-align: right;">2014</td>
+<td style="text-align: left;">▇▃▇▂▆</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">edad</td>
+<td style="text-align: right;">76</td>
+<td style="text-align: right;">1.00</td>
+<td style="text-align: right;">47.18</td>
+<td style="text-align: right;">17.29</td>
+<td style="text-align: right;">18</td>
+<td style="text-align: right;">33</td>
+<td style="text-align: right;">46</td>
+<td style="text-align: right;">59</td>
+<td style="text-align: right;">89</td>
+<td style="text-align: left;">▇▇▇▅▂</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">horas_tv</td>
+<td style="text-align: right;">10146</td>
+<td style="text-align: right;">0.53</td>
+<td style="text-align: right;">2.98</td>
+<td style="text-align: right;">2.59</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">24</td>
+<td style="text-align: left;">▇▂▁▁▁</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+
+<img data-src="introR_git_files/figure-revealjs/unnamed-chunk-12-1.png" class="margin-caption r-stretch" width="960"></section>
+<section class="slide level2">
+
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href=""></a>encuesta <span class="sc">%&gt;%</span></span>
+<span id="cb17-2"><a href=""></a>  <span class="fu">group_by</span>(estado_civil) <span class="sc">%&gt;%</span></span>
+<span id="cb17-3"><a href=""></a>  <span class="fu">summarise</span>(<span class="at">n =</span> <span class="fu">n</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb17-4"><a href=""></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> estado_civil, <span class="at">y =</span> n)) <span class="sc">+</span></span>
+<span id="cb17-5"><a href=""></a>  <span class="fu">geom_col</span>() <span class="sc">+</span></span>
+<span id="cb17-6"><a href=""></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Conteo de estado_civil"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+
+</div>
+<img data-src="introR_git_files/figure-revealjs/unnamed-chunk-13-1.png" class="margin-caption r-stretch" width="960"></section>
+<section class="slide level2">
+
+<h3 id="instalar-otros-paquetes">Instalar otros paquetes</h3>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18" data-code-line-numbers="1|2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href=""></a><span class="fu">install.packages</span>(<span class="st">"importinegi"</span>)</span>
+<span id="cb18-2"><a href=""></a><span class="fu">enigh_nuevaconstruccion</span>(<span class="at">year =</span> <span class="dv">2014</span>, <span class="at">datos =</span> ingresos)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section class="slide level2">
+
+<h3 id="recursos-adicionales">Recursos adicionales</h3>
+<ul>
+<li class="fragment"><a href="https://cran.r-project.org/doc/manuals/R-intro.pdf">Manual oficial de R</a></li>
+<li class="fragment"><a href="https://r4ds.had.co.nz">R for Data Science</a></li>
+<li class="fragment"><a href="https://quarto.org/docs/authoring/callouts.html">Guía de documentos Quarto</a></li>
+</ul>
+</section>
+<section id="quarto-un-sistema-multilenguaje." class="slide level2">
+<h2>4. Quarto: un sistema multilenguaje.</h2>
+<p>Ventajas Quarto</p>
+<ol type="1">
+<li class="fragment"><p>Compatibilidad con varios lenguajes de programación.</p></li>
+<li class="fragment"><p>Generación de reportes, documentos y presentaciones en RMarkdown.</p></li>
+<li class="fragment"><p>Ecosistema de paquetes.</p></li>
+</ol>
+
+<img data-src="multi.png" class="margin-caption quarto-figure quarto-figure-center r-stretch"></section>
+<section class="slide level2">
+
+<h3 id="el-entorno-de-trabajo">El entorno de trabajo</h3>
+<p>Para conocer la versión de R que tenemos instalada podemos usar el siguiente código:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href=""></a><span class="fu">getRversion</span>()</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] '4.5.2'</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href=""></a>R.version.string</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "R version 4.5.2 (2025-10-31)"</code></pre>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+<p>Recuerda que para utilizar un paquete con R se debe instalar (una vez) y cargarse cada sesión que queramos utilizarlo con <code>{library}</code>.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="annotated-cell-12"><pre class="sourceCode numberSource r code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode r"><a class="code-annotation-anchor" data-target-cell="annotated-cell-12" data-target-annotation="1" onclick="event.preventDefault();" href="">1</a><span id="annotated-cell-12-1" class="code-annotation-target"><a href="#annotated-cell-12-1"></a><span class="fu">install.packages</span>(<span class="st">"esquisse"</span>)</span>
+<a class="code-annotation-anchor" data-target-cell="annotated-cell-12" data-target-annotation="2" onclick="event.preventDefault();" href="">2</a><span id="annotated-cell-12-2" class="code-annotation-target"><a href="#annotated-cell-12-2"></a><span class="fu">library</span>(esquisse)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-annotation">
+<dl class="code-annotation-container-grid">
+<dt class="fragment" data-target-cell="annotated-cell-12" data-target-annotation="1">1</dt>
+<dd class="fragment">
+<span data-code-cell="annotated-cell-12" data-code-lines="1" data-code-annotation="1">Podemos instalar el paquete esquisse con este comando.</span>
+</dd>
+<dt class="fragment" data-target-cell="annotated-cell-12" data-target-annotation="2">2</dt>
+<dd class="fragment">
+<span data-code-cell="annotated-cell-12" data-code-lines="2" data-code-annotation="2">Una vez instalado, el comando <code>library</code> nos permitirá utilizarlo en esta sesión.</span>
+</dd>
+</dl>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+<h3 id="carga-de-datos">Carga de datos</h3>
+<p>En esta sección repasaremos cómo crear proyectos, cargar paquetes y datos en R. Además revisaremos la gramática de R y realizaremos algunos gráficos con datos precargados y <code>tidyverse</code>.</p>
+</section>
+<section class="slide level2">
+
+<div title="Espera, ¿qué es el `tidyverse`?">
+<div class="callout callout-caution callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Espera, ¿qué es el <code>tidyverse</code>?</strong></p>
+</div>
+<div class="callout-content">
+<p>El <strong>tidyverse</strong> es un ecosistema de paquetes en R diseñado para hacer que la <strong>manipulación, visualización y análisis de datos</strong> sea más intuitiva y coherente. Fue desarrollado por <strong>Hadley Wickham</strong> y colaboradores, y se basa en una <strong>filosofía de datos ordenados (tidy data)</strong>.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+<h4 id="paquetes-principales-del-tidyverse">Paquetes principales del tidyverse</h4>
+<p>Algunos de los paquetes más utilizados del tidyverse son:</p>
+<table>
+<thead>
+<tr class="header">
+<th>Paquete</th>
+<th>Propósito principal</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>ggplot2</code></td>
+<td>Visualización de datos</td>
+</tr>
+<tr class="even">
+<td><code>dplyr</code></td>
+<td>Manipulación de datos (filtrar, agrupar, resumir)</td>
+</tr>
+<tr class="odd">
+<td><code>tidyr</code></td>
+<td>Transformación de estructuras (pivotear, separar)</td>
+</tr>
+<tr class="even">
+<td><code>readr</code></td>
+<td>Lectura rápida de archivos <code>.csv</code>, <code>.tsv</code>, etc.</td>
+</tr>
+<tr class="odd">
+<td><code>purrr</code></td>
+<td>Programación funcional (aplicar funciones)</td>
+</tr>
+<tr class="even">
+<td><code>tibble</code></td>
+<td>Tablas (mejor que <code>data.frame</code>)</td>
+</tr>
+<tr class="odd">
+<td><code>stringr</code></td>
+<td>Manipulación de texto</td>
+</tr>
+<tr class="even">
+<td><code>forcats</code></td>
+<td>Manejo de factores (variables categóricas)</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section class="slide level2">
+
+<p>Recuerda que todo estos paquetes se instalan con tan solo dos líneas:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href=""></a><span class="fu">install.packages</span>(<span class="st">"tidyverse"</span>, <span class="at">repos =</span> <span class="st">"https://cran.rstudio.com/"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+The downloaded binary packages are in
+    /var/folders/yf/56t0v34n76b9pvldnd09vbcr0000gn/T//RtmpJp3ioe/downloaded_packages</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href=""></a><span class="fu">library</span>(tidyverse)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="quarto" class="slide level2">
+<h2>Quarto</h2>
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Atajos útiles</strong></p>
+</div>
+<div class="callout-content">
+<p>Para insertar una porción de código puedes utilizar la siguiente combinación de teclas:</p>
+<ul>
+<li class="fragment"><p><strong>Windows/Linux:</strong> <code>Ctrl</code> + <code>Alt</code> + <code>I</code></p></li>
+<li class="fragment"><p><strong>Mac:</strong> <code>Cmd</code> + <code>Option</code> + <code>I</code></p></li>
+</ul>
+<p>Para ejecutar el fragmento de código actual:</p>
+<ul>
+<li class="fragment"><p><strong>Windows/Linux:</strong> <code>Ctrl</code> + <code>Enter</code></p></li>
+<li class="fragment"><p><strong>Mac:</strong> <code>Cmd</code> + <code>Enter</code></p></li>
+</ul>
+<p>Para insertar operador pipe (<code>%&gt;%</code> o <code>|&gt;</code>):</p>
+<ul>
+<li class="fragment"><p><strong>Windows/Linux:</strong> <code>Ctrl</code> + <code>Shift</code> + <code>M</code></p></li>
+<li class="fragment"><p><strong>Mac:</strong> <code>Cmd</code> + <code>Shift</code> + <code>M</code></p></li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<section id="quarto-1" class="slide level2">
+<h2>Quarto</h2>
+
+<img data-src="q2.png" class="margin-caption r-stretch"></section>
+<section id="quarto-2" class="slide level2">
+<h2>Quarto</h2>
+
+<img data-src="q1.png" class="margin-caption r-stretch quarto-figure-center"><p class="caption">https://rstudio.github.io/cheatsheets/quarto.pdf</p></section>
+<section id="ejemplo---datos-anuies" class="slide level2">
+<h2>Ejemplo - Datos ANUIES</h2>
+<ul>
+<li class="fragment"><p>Los anuarios de la ANUIES usan matrices anchas y celdas combinadas para presentar la información.</p></li>
+<li class="fragment"><p>Son útiles para la lectura humana, pero inmanejables para el análisis computacional.</p></li>
+<li class="fragment"><p>Su estructura viola los principios fundamentales de los datos ordenados (Tidy Data).</p></li>
+</ul>
+<aside class="notes">
+<p>Los registros administrativos institucionales, como los anuarios históricos de la ANUIES, suelen diseñarse bajo formatos visuales estáticos (matrices anchas con celdas combinadas). Si bien son útiles para la lectura humana en reportes, representan un problema a la hora de cargar los datos, ya que violan los principios de las estructuras ordenadas (Tidy Data).</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section class="slide level2">
+
+<p>Principios de los <strong>datos ordenados (<em>Tidy Data</em>)</strong>:</p>
+<ol type="1">
+<li class="fragment">Cada variable debe formar una columna.</li>
+<li class="fragment">Cada observación o caso debe formar una fila.</li>
+<li class="fragment">Cada valor está en su propia celda.</li>
+</ol>
+<div class="fragment">
+<div class=".column-screen-inset-left">
+<div class="quarto-figure quarto-figure-center margin-caption">
+<figure>
+<p><img data-src="tidy_rmarino.png" class="margin-caption"></p>
+<figcaption>Wickham &amp; Grolemund 2016</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section class="slide level2">
+
+<p>El tablero interactivo de <strong>ANUIES</strong> permite seleccionar datos segmentados así como añadir, quitar variables y visualizar gráficas.</p>
+<div class=".column-screen-inset-left">
+<div class="quarto-figure quarto-figure-center margin-caption">
+<figure>
+<p><img data-src="anuiesweb.png" class="margin-caption" width="900"></p>
+<figcaption><em>Tablero ANUIES</em></figcaption>
+</figure>
+</div>
+</div>
+<aside class="notes">
+<p>Lo cual es bastante útil para explorar los datos dentro de la misma página. Debemos tomar en cuenta que ya viene con una configuración predeterminada definida por esta institución en particular.</p>
+<p>Si solo queremos explorar datos esta bien, el problema aparece cuando queremos analizar por nuestra cuenta ya que en la exportación el archivo de salida tiene un formato que no está optimizado para el análisis de datos.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section class="slide level2">
+
+<video id="video_shortcode_videojs_video1" width="1500" height="1150" class="video-js vjs-default-skin " controls="" preload="auto" data-setup="{}" title=""><source src="video_anuies.mp4"></video>
+</section>
+<section class="slide level2 smaller scrollable" id="references">
+
+<p>Carga los datos.</p>
+<div class="fragment" data-custom="blur">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26" data-code-line-numbers="1|2|3|4|5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href=""></a><span class="fu">install.packages</span>(<span class="st">"readxl"</span>)</span>
+<span id="cb26-2"><a href=""></a><span class="fu">library</span>(readxl)</span>
+<span id="cb26-3"><a href=""></a>anuies <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"github/data/historico_anuario_2018-2019_a_2024-2025.xlsx"</span>, </span>
+<span id="cb26-4"><a href=""></a>                       <span class="at">sheet =</span> <span class="st">"Histórico"</span>)</span>
+<span id="cb26-5"><a href=""></a><span class="fu">head</span>(anuies)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 22
+  Asociación Nacional de…¹ ...2  ...3  ...4  ...5  ...6  ...7  ...8  ...9  ...10
+  &lt;chr&gt;                    &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;
+1 Estadística de Educació… &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt; 
+2 &lt;NA&gt;                     &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt; 
+3 NIVEL DE DESAGREGACIÓN   2018… &lt;NA&gt;  &lt;NA&gt;  2019… &lt;NA&gt;  &lt;NA&gt;  2020… &lt;NA&gt;  &lt;NA&gt; 
+4 &lt;NA&gt;                     Matr… Matr… Matr… Matr… Matr… Matr… Matr… Matr… Matr…
+5 CIUDAD DE MÉXICO         3246… 3266… 6513… 3435… 3394… 6829… 3705… 3560… 7266…
+6 LICENCIATURA UNIVERSITA… 3246… 3266… 6513… 3435… 3394… 6829… 3705… 3560… 7266…
+# ℹ abbreviated name:
+#   ¹​`Asociación Nacional de Universidades e Instituciones de Educación Superior (ANUIES)`
+# ℹ 12 more variables: ...11 &lt;chr&gt;, ...12 &lt;chr&gt;, ...13 &lt;chr&gt;, ...14 &lt;chr&gt;,
+#   ...15 &lt;chr&gt;, ...16 &lt;chr&gt;, ...17 &lt;chr&gt;, ...18 &lt;chr&gt;, ...19 &lt;chr&gt;,
+#   ...20 &lt;chr&gt;, ...21 &lt;chr&gt;, ...22 &lt;chr&gt;</code></pre>
+</div>
+</div>
+<hr>
+<p>¿Puedes describirlos? ¿qué estructura tienen?</p>
+<div class="cell">
+<div class="cell-output-display margin-caption">
+<table>
+<colgroup>
+<col style="width: 18%">
+<col style="width: 4%">
+<col style="width: 4%">
+<col style="width: 3%">
+<col style="width: 4%">
+<col style="width: 4%">
+<col style="width: 3%">
+<col style="width: 4%">
+<col style="width: 4%">
+<col style="width: 3%">
+<col style="width: 4%">
+<col style="width: 4%">
+<col style="width: 3%">
+<col style="width: 4%">
+<col style="width: 4%">
+<col style="width: 3%">
+<col style="width: 4%">
+<col style="width: 4%">
+<col style="width: 3%">
+<col style="width: 4%">
+<col style="width: 4%">
+<col style="width: 3%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Asociación Nacional de Universidades e Instituciones de Educación Superior (ANUIES)</th>
+<th style="text-align: center;">…2</th>
+<th style="text-align: center;">…3</th>
+<th style="text-align: center;">…4</th>
+<th style="text-align: center;">…5</th>
+<th style="text-align: center;">…6</th>
+<th style="text-align: center;">…7</th>
+<th style="text-align: center;">…8</th>
+<th style="text-align: center;">…9</th>
+<th style="text-align: center;">…10</th>
+<th style="text-align: center;">…11</th>
+<th style="text-align: center;">…12</th>
+<th style="text-align: center;">…13</th>
+<th style="text-align: center;">…14</th>
+<th style="text-align: center;">…15</th>
+<th style="text-align: center;">…16</th>
+<th style="text-align: center;">…17</th>
+<th style="text-align: center;">…18</th>
+<th style="text-align: center;">…19</th>
+<th style="text-align: center;">…20</th>
+<th style="text-align: center;">…21</th>
+<th style="text-align: center;">…22</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">Estadística de Educación Superior - Histórico</td>
+<td style="text-align: center;">NA</td>
+<td style="text-align: center;">NA</td>
+<td style="text-align: center;">NA</td>
+<td style="text-align: center;">NA</td>
+<td style="text-align: center;">NA</td>
+<td style="text-align: center;">NA</td>
+<td style="text-align: center;">NA</td>
+<td style="text-align: center;">NA</td>
+<td style="text-align: center;">NA</td>
+<td style="text-align: center;">NA</td>
+<td style="text-align: center;">NA</td>
+<td style="text-align: center;">NA</td>
+<td style="text-align: center;">NA</td>
+<td style="text-align: center;">NA</td>
+<td style="text-align: center;">NA</td>
+<td style="text-align: center;">NA</td>
+<td style="text-align: center;">NA</td>
+<td style="text-align: center;">NA</td>
+<td style="text-align: center;">NA</td>
+<td style="text-align: center;">NA</td>
+<td style="text-align: center;">NA</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">NA</td>
+<td style="text-align: center;">NA</td>
+<td style="text-align: center;">NA</td>
+<td style="text-align: center;">NA</td>
+<td style="text-align: center;">NA</td>
+<td style="text-align: center;">NA</td>
+<td style="text-align: center;">NA</td>
+<td style="text-align: center;">NA</td>
+<td style="text-align: center;">NA</td>
+<td style="text-align: center;">NA</td>
+<td style="text-align: center;">NA</td>
+<td style="text-align: center;">NA</td>
+<td style="text-align: center;">NA</td>
+<td style="text-align: center;">NA</td>
+<td style="text-align: center;">NA</td>
+<td style="text-align: center;">NA</td>
+<td style="text-align: center;">NA</td>
+<td style="text-align: center;">NA</td>
+<td style="text-align: center;">NA</td>
+<td style="text-align: center;">NA</td>
+<td style="text-align: center;">NA</td>
+<td style="text-align: center;">NA</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">NIVEL DE DESAGREGACIÓN</td>
+<td style="text-align: center;">2018-2019</td>
+<td style="text-align: center;">NA</td>
+<td style="text-align: center;">NA</td>
+<td style="text-align: center;">2019-2020</td>
+<td style="text-align: center;">NA</td>
+<td style="text-align: center;">NA</td>
+<td style="text-align: center;">2020-2021</td>
+<td style="text-align: center;">NA</td>
+<td style="text-align: center;">NA</td>
+<td style="text-align: center;">2021-2022</td>
+<td style="text-align: center;">NA</td>
+<td style="text-align: center;">NA</td>
+<td style="text-align: center;">2022-2023</td>
+<td style="text-align: center;">NA</td>
+<td style="text-align: center;">NA</td>
+<td style="text-align: center;">2023-2024</td>
+<td style="text-align: center;">NA</td>
+<td style="text-align: center;">NA</td>
+<td style="text-align: center;">2024-2025</td>
+<td style="text-align: center;">NA</td>
+<td style="text-align: center;">NA</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">NA</td>
+<td style="text-align: center;">Matrícula Mujeres</td>
+<td style="text-align: center;">Matrícula Hombres</td>
+<td style="text-align: center;">Matrícula Total</td>
+<td style="text-align: center;">Matrícula Mujeres</td>
+<td style="text-align: center;">Matrícula Hombres</td>
+<td style="text-align: center;">Matrícula Total</td>
+<td style="text-align: center;">Matrícula Mujeres</td>
+<td style="text-align: center;">Matrícula Hombres</td>
+<td style="text-align: center;">Matrícula Total</td>
+<td style="text-align: center;">Matrícula Mujeres</td>
+<td style="text-align: center;">Matrícula Hombres</td>
+<td style="text-align: center;">Matrícula Total</td>
+<td style="text-align: center;">Matrícula Mujeres</td>
+<td style="text-align: center;">Matrícula Hombres</td>
+<td style="text-align: center;">Matrícula Total</td>
+<td style="text-align: center;">Matrícula Mujeres</td>
+<td style="text-align: center;">Matrícula Hombres</td>
+<td style="text-align: center;">Matrícula Total</td>
+<td style="text-align: center;">Matrícula Mujeres</td>
+<td style="text-align: center;">Matrícula Hombres</td>
+<td style="text-align: center;">Matrícula Total</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">CIUDAD DE MÉXICO</td>
+<td style="text-align: center;">324667</td>
+<td style="text-align: center;">326653</td>
+<td style="text-align: center;">651320</td>
+<td style="text-align: center;">343519</td>
+<td style="text-align: center;">339454</td>
+<td style="text-align: center;">682973</td>
+<td style="text-align: center;">370589</td>
+<td style="text-align: center;">356065</td>
+<td style="text-align: center;">726654</td>
+<td style="text-align: center;">374303</td>
+<td style="text-align: center;">353595</td>
+<td style="text-align: center;">727898</td>
+<td style="text-align: center;">395769</td>
+<td style="text-align: center;">371659</td>
+<td style="text-align: center;">767428</td>
+<td style="text-align: center;">444470</td>
+<td style="text-align: center;">407818</td>
+<td style="text-align: center;">852288</td>
+<td style="text-align: center;">475435</td>
+<td style="text-align: center;">429116</td>
+<td style="text-align: center;">904551</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">LICENCIATURA UNIVERSITARIA Y TECNOLÓGICA</td>
+<td style="text-align: center;">324667</td>
+<td style="text-align: center;">326653</td>
+<td style="text-align: center;">651320</td>
+<td style="text-align: center;">343519</td>
+<td style="text-align: center;">339454</td>
+<td style="text-align: center;">682973</td>
+<td style="text-align: center;">370589</td>
+<td style="text-align: center;">356065</td>
+<td style="text-align: center;">726654</td>
+<td style="text-align: center;">374303</td>
+<td style="text-align: center;">353595</td>
+<td style="text-align: center;">727898</td>
+<td style="text-align: center;">395769</td>
+<td style="text-align: center;">371659</td>
+<td style="text-align: center;">767428</td>
+<td style="text-align: center;">444470</td>
+<td style="text-align: center;">407818</td>
+<td style="text-align: center;">852288</td>
+<td style="text-align: center;">475435</td>
+<td style="text-align: center;">429116</td>
+<td style="text-align: center;">904551</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">ARTES Y HUMANIDADES</td>
+<td style="text-align: center;">20108</td>
+<td style="text-align: center;">17332</td>
+<td style="text-align: center;">37440</td>
+<td style="text-align: center;">20580</td>
+<td style="text-align: center;">17590</td>
+<td style="text-align: center;">38170</td>
+<td style="text-align: center;">20496</td>
+<td style="text-align: center;">16916</td>
+<td style="text-align: center;">37412</td>
+<td style="text-align: center;">22564</td>
+<td style="text-align: center;">17949</td>
+<td style="text-align: center;">40513</td>
+<td style="text-align: center;">25632</td>
+<td style="text-align: center;">19983</td>
+<td style="text-align: center;">45615</td>
+<td style="text-align: center;">28229</td>
+<td style="text-align: center;">21089</td>
+<td style="text-align: center;">49318</td>
+<td style="text-align: center;">31302</td>
+<td style="text-align: center;">22415</td>
+<td style="text-align: center;">53717</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">CIENCIAS NATURALES, MATEMÁTICAS Y ESTADÍSTICA</td>
+<td style="text-align: center;">13851</td>
+<td style="text-align: center;">16505</td>
+<td style="text-align: center;">30356</td>
+<td style="text-align: center;">14267</td>
+<td style="text-align: center;">16823</td>
+<td style="text-align: center;">31090</td>
+<td style="text-align: center;">14915</td>
+<td style="text-align: center;">17835</td>
+<td style="text-align: center;">32750</td>
+<td style="text-align: center;">15691</td>
+<td style="text-align: center;">18903</td>
+<td style="text-align: center;">34594</td>
+<td style="text-align: center;">15419</td>
+<td style="text-align: center;">19188</td>
+<td style="text-align: center;">34607</td>
+<td style="text-align: center;">15232</td>
+<td style="text-align: center;">19089</td>
+<td style="text-align: center;">34321</td>
+<td style="text-align: center;">15256</td>
+<td style="text-align: center;">19364</td>
+<td style="text-align: center;">34620</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">CIENCIAS SOCIALES Y DERECHO</td>
+<td style="text-align: center;">92326</td>
+<td style="text-align: center;">71968</td>
+<td style="text-align: center;">164294</td>
+<td style="text-align: center;">97759</td>
+<td style="text-align: center;">76320</td>
+<td style="text-align: center;">174079</td>
+<td style="text-align: center;">103259</td>
+<td style="text-align: center;">79179</td>
+<td style="text-align: center;">182438</td>
+<td style="text-align: center;">102338</td>
+<td style="text-align: center;">76182</td>
+<td style="text-align: center;">178520</td>
+<td style="text-align: center;">107852</td>
+<td style="text-align: center;">80444</td>
+<td style="text-align: center;">188296</td>
+<td style="text-align: center;">123654</td>
+<td style="text-align: center;">89064</td>
+<td style="text-align: center;">212718</td>
+<td style="text-align: center;">132726</td>
+<td style="text-align: center;">94496</td>
+<td style="text-align: center;">227222</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<hr>
+<p>¿Para que convertir mis datos?</p>
+<ul>
+<li class="fragment"><p>Formato ancho: cada trimestre (Q1–Q4) es una columna separada. Es más fácil de leer, pero difícil de procesar automáticamente.</p></li>
+<li class="fragment"><p>Formato largo: los trimestres están representados en una sola columna (Trimestre), con sus ingresos en otra (Ingresos). Este es el formato ideal para análisis con dplyr, ggplot2 y tidyverse.</p></li>
+</ul>
+<div class="quarto-figure quarto-figure-center margin-caption">
+<figure>
+<p><img data-src="wide-long.png" class="margin-caption"></p>
+<figcaption>Formato ancho vs formato largo</figcaption>
+</figure>
+</div>
+<hr>
+<div title="Comparación de formatos de datos">
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Comparación de formatos de datos</strong></p>
+</div>
+<div class="callout-content">
+<table>
+<colgroup>
+<col style="width: 45%">
+<col style="width: 55%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Formato ancho</th>
+<th>Formato largo</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Una columna por trimestre (<code>Q1</code>, <code>Q2</code>, etc.)</td>
+<td>Dos columnas: <code>Trimestre</code> e <code>Ingresos</code></td>
+</tr>
+<tr class="even">
+<td>Más fácil de leer manualmente</td>
+<td>Más fácil de procesar con código R (<code>tidyverse</code>)</td>
+</tr>
+<tr class="odd">
+<td>Dificulta agregaciones/filtros por trimestre</td>
+<td>Permite agrupar, resumir y graficar fácilmente</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+<hr>
+<p>Al ordenar los datos obtenemos la siguiente estructura:</p>
+<div class="cell">
+<div class="cell-output-display margin-caption">
+<table>
+<colgroup>
+<col style="width: 43%">
+<col style="width: 13%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 10%">
+<col style="width: 8%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">campo_conocimiento</th>
+<th style="text-align: center;">ciclo_escolar</th>
+<th style="text-align: center;">mat_hombres</th>
+<th style="text-align: center;">mat_mujeres</th>
+<th style="text-align: center;">mat_total</th>
+<th style="text-align: center;">es_stem</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">CIENCIAS NATURALES, MATEMÁTICAS Y ESTADÍSTICA</td>
+<td style="text-align: center;">2020-2021</td>
+<td style="text-align: center;">17835</td>
+<td style="text-align: center;">84155</td>
+<td style="text-align: center;">32750</td>
+<td style="text-align: center;">Sí</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">TOTAL GENERAL</td>
+<td style="text-align: center;">2019-2020</td>
+<td style="text-align: center;">1874310</td>
+<td style="text-align: center;">1799315</td>
+<td style="text-align: center;">2387549</td>
+<td style="text-align: center;">No</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">INGENIERÍA, MANUFACTURA Y CONSTRUCCIÓN</td>
+<td style="text-align: center;">2019-2020</td>
+<td style="text-align: center;">317866</td>
+<td style="text-align: center;">266774</td>
+<td style="text-align: center;">370902</td>
+<td style="text-align: center;">Sí</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">AGRONOMÍA Y VETERINARIA</td>
+<td style="text-align: center;">2024-2025</td>
+<td style="text-align: center;">2232</td>
+<td style="text-align: center;">4773</td>
+<td style="text-align: center;">7005</td>
+<td style="text-align: center;">No</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">SERVICIOS</td>
+<td style="text-align: center;">2021-2022</td>
+<td style="text-align: center;">11335</td>
+<td style="text-align: center;">10252</td>
+<td style="text-align: center;">21587</td>
+<td style="text-align: center;">No</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">CIENCIAS SOCIALES Y DERECHO</td>
+<td style="text-align: center;">2024-2025</td>
+<td style="text-align: center;">94496</td>
+<td style="text-align: center;">132726</td>
+<td style="text-align: center;">227222</td>
+<td style="text-align: center;">No</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>Vs datos originales</p>
+<div class="fragment">
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 22
+  Asociación Nacional de…¹ ...2  ...3  ...4  ...5  ...6  ...7  ...8  ...9  ...10
+  &lt;chr&gt;                    &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;
+1 Estadística de Educació… &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt; 
+2 &lt;NA&gt;                     &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt; 
+3 NIVEL DE DESAGREGACIÓN   2018… &lt;NA&gt;  &lt;NA&gt;  2019… &lt;NA&gt;  &lt;NA&gt;  2020… &lt;NA&gt;  &lt;NA&gt; 
+4 &lt;NA&gt;                     Matr… Matr… Matr… Matr… Matr… Matr… Matr… Matr… Matr…
+5 CIUDAD DE MÉXICO         3246… 3266… 6513… 3435… 3394… 6829… 3705… 3560… 7266…
+6 LICENCIATURA UNIVERSITA… 3246… 3266… 6513… 3435… 3394… 6829… 3705… 3560… 7266…
+# ℹ abbreviated name:
+#   ¹​`Asociación Nacional de Universidades e Instituciones de Educación Superior (ANUIES)`
+# ℹ 12 more variables: ...11 &lt;chr&gt;, ...12 &lt;chr&gt;, ...13 &lt;chr&gt;, ...14 &lt;chr&gt;,
+#   ...15 &lt;chr&gt;, ...16 &lt;chr&gt;, ...17 &lt;chr&gt;, ...18 &lt;chr&gt;, ...19 &lt;chr&gt;,
+#   ...20 &lt;chr&gt;, ...21 &lt;chr&gt;, ...22 &lt;chr&gt;</code></pre>
+</div>
+</div>
+</div>
+<hr>
+<p>Algunas funciones</p>
+<div style="font-size: 70%;">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29" data-code-line-numbers="1|2|3|4|5|6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href=""></a>anuies_tidy <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"github/data/anuies_tidy.csv"</span>)</span>
+<span id="cb29-2"><a href=""></a><span class="fu">set.seed</span>(<span class="dv">123</span>) </span>
+<span id="cb29-3"><a href=""></a>anuies_tidy <span class="sc">%&gt;%</span> </span>
+<span id="cb29-4"><a href=""></a>  <span class="fu">select</span>(<span class="sc">-</span>prop_mujeres) <span class="sc">%&gt;%</span>        </span>
+<span id="cb29-5"><a href=""></a>  <span class="fu">slice_sample</span>(<span class="at">n =</span> <span class="dv">6</span>) <span class="sc">%&gt;%</span>         </span>
+<span id="cb29-6"><a href=""></a>  <span class="fu">kable</span>(<span class="at">align =</span> <span class="st">"c"</span>)</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<aside class="notes">
+<p><strong><code>select(-prop_mujeres)</code>:</strong> Al poner el signo de resta (<code>-</code>) antes del nombre de la variable, le indicas a R que conserve toda la base de datos <strong>excepto</strong> esa columna.</p>
+<p><strong><code>slice_sample(n = 6)</code>:</strong> Esta función toma un puñado de filas al azar de toda la base (en este caso, 6). Esto garantiza que en pantalla se observen distintas carreras, instituciones y años.</p>
+<p><strong><code>set.seed(123)</code>:</strong> Como la extracción es aleatoria, se elige un número “semilla” para obligar a R a elegir la misma muestra siempre.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+
+</div>
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-baez2025beyond" class="csl-entry" role="listitem">
+Báez Carlos, Adriana del Rosario, y Sergio A. Bárcena Juárez. 2025. <span>«Beyond Numbers: The Political Strength of Women in Mexican Subnational Legislatures»</span>. En <em>Women as Builders of Parity Democracy in Mexico</em>, editado por Adriana del Rosario Báez Carlos, Adriana Ortiz-Ortega, Sergio A. Bárcena Juárez, y Lorena Vázquez Correa, 113-36. Routledge.
+</div>
+<div id="ref-undesa2016integrating" class="csl-entry" role="listitem">
+United Nations Department of Economic and Social Affairs, Statistics Division. 2016. <span>«Integrating a Gender Perspective into Statistics»</span>. Manual. New York: United Nations. <a href="https://unstats.un.org/unsd/demographic-social/Standards-and-Methods/files/Handbooks/gender/Integrating-a-Gender-Perspective-into-Statistics-E.pdf">https://unstats.un.org/unsd/demographic-social/Standards-and-Methods/files/Handbooks/gender/Integrating-a-Gender-Perspective-into-Statistics-E.pdf</a>.
+</div>
+</div>
+</section></section>
+    </div>
+  <div class="quarto-auto-generated-content" style="display: none;">
+<p><img src="uam5.png" class="slide-logo"></p>
+<div class="footer footer-default">
+<p>github.com/sarodi/IntroR</p>
+</div>
+</div></div>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script>
+  <script src="introR_git_files/libs/revealjs/dist/reveal.js"></script>
+  <!-- reveal.js plugins -->
+  <script src="introR_git_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="introR_git_files/libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="introR_git_files/libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="introR_git_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="introR_git_files/libs/revealjs/plugin/reveal-chalkboard/plugin.js"></script>
+  <script src="introR_git_files/libs/revealjs/plugin/quarto-support/support.js"></script>
+  
+
+  <script src="introR_git_files/libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="introR_git_files/libs/revealjs/plugin/search/search.js"></script>
+  <script src="introR_git_files/libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="introR_git_files/libs/revealjs/plugin/math/math.js"></script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+'controlsAuto': true,
+'previewLinksAuto': false,
+'pdfSeparateFragments': false,
+'autoAnimateEasing': "ease",
+'autoAnimateDuration': 1,
+'autoAnimateUnmatched': true,
+'jumpToSlide': true,
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleChalkboard(event)\"><kbd>b</kbd> Toggle Chalkboard</a></li>\n<li class=\"slide-tool-item\" data-item=\"6\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleNotesCanvas(event)\"><kbd>c</kbd> Toggle Notes Canvas</a></li>\n<li class=\"slide-tool-item\" data-item=\"7\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.downloadDrawings(event)\"><kbd>d</kbd> Download Drawings</a></li>\n<li class=\"slide-tool-item\" data-item=\"8\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'chalkboard': {"buttons":true},
+'smaller': false,
+ 
+        // Display controls in the bottom right corner
+        controls: false,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: false,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'edges',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: 'c/t',
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: true,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: false,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'linear',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: false,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'none',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'none',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1050,
+
+        height: 700,
+
+        // Factor of the display size that should remain empty around the content
+        margin: 0.1,
+
+        math: {
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+
+        // reveal.js plugins
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, RevealChalkboard, QuartoSupport,
+
+          RevealMath,
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    
+    <script>
+      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+      // slide changes (different for each slide format).
+      (function () {
+        // dispatch for htmlwidgets
+        function fireSlideEnter() {
+          const event = window.document.createEvent("Event");
+          event.initEvent("slideenter", true, true);
+          window.document.dispatchEvent(event);
+        }
+
+        function fireSlideChanged(previousSlide, currentSlide) {
+          fireSlideEnter();
+
+          // dispatch for shiny
+          if (window.jQuery) {
+            if (previousSlide) {
+              window.jQuery(previousSlide).trigger("hidden");
+            }
+            if (currentSlide) {
+              window.jQuery(currentSlide).trigger("shown");
+            }
+          }
+        }
+
+        // hookup for slidy
+        if (window.w3c_slidy) {
+          window.w3c_slidy.add_observer(function (slide_num) {
+            // slide_num starts at position 1
+            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
+          });
+        }
+
+      })();
+    </script>
+
+    <script id="quarto-html-after-body" type="application/javascript">
+      window.document.addEventListener("DOMContentLoaded", function (event) {
+        const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+        tabsets.forEach(function(tabset) {
+          const tabby = new Tabby('#' + tabset.id);
+        });
+        const isCodeAnnotation = (el) => {
+          for (const clz of el.classList) {
+            if (clz.startsWith('code-annotation-')) {                     
+              return true;
+            }
+          }
+          return false;
+        }
+        const onCopySuccess = function(e) {
+          // button target
+          const button = e.trigger;
+          // don't keep focus
+          button.blur();
+          // flash "checked"
+          button.classList.add('code-copy-button-checked');
+          var currentTitle = button.getAttribute("title");
+          button.setAttribute("title", "Copiado");
+          let tooltip;
+          if (window.bootstrap) {
+            button.setAttribute("data-bs-toggle", "tooltip");
+            button.setAttribute("data-bs-placement", "left");
+            button.setAttribute("data-bs-title", "Copiado");
+            tooltip = new bootstrap.Tooltip(button, 
+              { trigger: "manual", 
+                customClass: "code-copy-button-tooltip",
+                offset: [0, -8]});
+            tooltip.show();    
+          }
+          setTimeout(function() {
+            if (tooltip) {
+              tooltip.hide();
+              button.removeAttribute("data-bs-title");
+              button.removeAttribute("data-bs-toggle");
+              button.removeAttribute("data-bs-placement");
+            }
+            button.setAttribute("title", currentTitle);
+            button.classList.remove('code-copy-button-checked');
+          }, 1000);
+          // clear code selection
+          e.clearSelection();
+        }
+        const getTextToCopy = function(trigger) {
+          const outerScaffold = trigger.parentElement.cloneNode(true);
+          const codeEl = outerScaffold.querySelector('code');
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
+            }
+          }
+          return codeEl.innerText;
+        }
+        const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+          text: getTextToCopy
+        });
+        clipboard.on('success', onCopySuccess);
+        if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+          const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+            text: getTextToCopy,
+            container: window.document.getElementById('quarto-embedded-source-code-modal')
+          });
+          clipboardModal.on('success', onCopySuccess);
+        }
+          var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+          var mailtoRegex = new RegExp(/^mailto:/);
+            var filterRegex = new RegExp('/' + window.location.host + '/');
+          var isInternal = (href) => {
+              return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+          }
+          // Inspect non-navigation links and adorn them if external
+         var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+          for (var i=0; i<links.length; i++) {
+            const link = links[i];
+            if (!isInternal(link.href)) {
+              // undo the damage that might have been done by quarto-nav.js in the case of
+              // links that we want to consider external
+              if (link.dataset.originalHref !== undefined) {
+                link.href = link.dataset.originalHref;
+              }
+            }
+          }
+        function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+          const config = {
+            allowHTML: true,
+            maxWidth: 500,
+            delay: 100,
+            arrow: false,
+            appendTo: function(el) {
+                return el.closest('section.slide') || el.parentElement;
+            },
+            interactive: true,
+            interactiveBorder: 10,
+            theme: 'light-border',
+            placement: 'bottom-start',
+          };
+          if (contentFn) {
+            config.content = contentFn;
+          }
+          if (onTriggerFn) {
+            config.onTrigger = onTriggerFn;
+          }
+          if (onUntriggerFn) {
+            config.onUntrigger = onUntriggerFn;
+          }
+            config['offset'] = [0,0];
+            config['maxWidth'] = 700;
+          window.tippy(el, config); 
+        }
+        const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+        for (var i=0; i<noterefs.length; i++) {
+          const ref = noterefs[i];
+          tippyHover(ref, function() {
+            // use id or data attribute instead here
+            let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+            try { href = new URL(href).hash; } catch {}
+            const id = href.replace(/^#\/?/, "");
+            const note = window.document.getElementById(id);
+            if (note) {
+              return note.innerHTML;
+            } else {
+              return "";
+            }
+          });
+        }
+        const findCites = (el) => {
+          const parentEl = el.parentElement;
+          if (parentEl) {
+            const cites = parentEl.dataset.cites;
+            if (cites) {
+              return {
+                el,
+                cites: cites.split(' ')
+              };
+            } else {
+              return findCites(el.parentElement)
+            }
+          } else {
+            return undefined;
+          }
+        };
+        var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+        for (var i=0; i<bibliorefs.length; i++) {
+          const ref = bibliorefs[i];
+          const citeInfo = findCites(ref);
+          if (citeInfo) {
+            tippyHover(citeInfo.el, function() {
+              var popup = window.document.createElement('div');
+              citeInfo.cites.forEach(function(cite) {
+                var citeDiv = window.document.createElement('div');
+                citeDiv.classList.add('hanging-indent');
+                citeDiv.classList.add('csl-entry');
+                var biblioDiv = window.document.getElementById('ref-' + cite);
+                if (biblioDiv) {
+                  citeDiv.innerHTML = biblioDiv.innerHTML;
+                }
+                popup.appendChild(citeDiv);
+              });
+              return popup.innerHTML;
+            });
+          }
+        }
+      });
+      </script>
+    <script>videojs(video_shortcode_videojs_video1);</script>
+    
+
+</body></html>
