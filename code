@@ -1,0 +1,57 @@
+# conocer la versión de R con la que estoy trabajando y la fecha en la que se publicó dicha versión.
+getRversion()
+R.version.string
+# Atajos útiles
+## Para insertar una porción de código puedes utilizar la siguiente combinación de teclas:
+### Windows/Linux: Ctrl + Alt + I
+### Mac: Cmd + Option + I
+## Para ejecutar el fragmento de código actual:
+### Windows/Linux: Ctrl + Enter
+### Mac: Cmd + Enter
+## Para insertar operador pipe (%>% o |>):
+### Windows/Linux: Ctrl + Shift + M
+### Mac: Cmd + Shift + M
+# Exploración de estructura de datos pre-cargados o pre-empaquetados y visualización sencilla
+# instalación de paquete {datos}
+install.packages("datos")
+# instalación de otros paquetes en CRAN
+install.packages("importinegi")
+enigh_nuevaconstruccion(year = 2014, datos = ingresos)
+# por ejemplo este paquete que nos permite explorar datos y generar gráficos por medio de una interfaz
+install.packages("esquisse")
+library(esquisse)
+# en ocasiones, ante un error de instalación, debemos especificar desde dónde se instalan los paquetes
+install.packages("tidyverse", repos = "https://cran.rstudio.com/")
+# ya que instalé el paquete {datos}, debo añadirlo o cargarlo a la sesión de trabajo
+# cargar librería {datos}
+library(datos)
+# cargar librería {datasets} (datos pre-cargados en el sistema, son internos)
+library(datasets)
+# explorar {datos}
+data(package = "datos")
+# conocer el contenido del paquete
+library(help = "datasets")
+??datasets
+# podemos ver las primeras 6 observaciones en nuestros datos
+head(encuesta)
+# con este comando conocemos las variables en nuestros datos
+colnames(encuesta)
+# así sabemos tanto el numero de observaciones como de variables
+dim(encuesta)
+str(encuesta)
+# estadísticos de los datos
+library(skimr)
+skim(encuesta)
+# gráfico sencillo de una variable
+encuesta %>%
+  group_by(estado_civil) %>%
+  summarise(n = n()) %>%
+  ggplot(aes(x = estado_civil, y = n)) +
+  geom_col() +
+  labs(title = "Conteo de estado_civil")
+# para cargar datos externos podemos utilizar el paquete readxl
+install.packages("readxl")
+library(readxl)
+anuies <- read_excel("github/data/historico_anuario_2018-2019_a_2024-2025.xlsx", 
+                       sheet = "Histórico")
+head(anuies)
